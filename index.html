@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clandestina - Recomendador de Vinos</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <h1>Clandestina</h1>
+                <p class="subtitle">Carta de Vinos</p>
+            </div>
+        </header>
+
+        <main>
+            <section class="filters-section">
+                <h2>¿Qué te apetece beber hoy?</h2>
+
+                <div class="filter-group">
+                    <h3>Buscar por Nombre</h3>
+                    <div class="search-container" style="margin-bottom: 20px;">
+                        <input type="text" id="searchInput" placeholder="Escribe el nombre del vino..."
+                            style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-family: inherit; font-size: 1rem; box-sizing: border-box;">
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Tipo de Vino</h3>
+                    <div class="chips-container" id="typeFilters">
+                        <button class="chip active" data-filter="all">Todos</button>
+                        <button class="chip" data-filter="Blanco">Blanco</button>
+                        <button class="chip" data-filter="Tinto">Tinto</button>
+                        <button class="chip" data-filter="Rosado">Rosado</button>
+                        <button class="chip" data-filter="Espumoso">Espumoso</button>
+                        <button class="chip" data-filter="Dulce/Jerez">Jerez & Dulces</button>
+                    </div>
+                </div>
+
+                <div class="filter-group advanced-filters">
+                    <div class="select-container">
+                        <h3>Variedad de Uva</h3>
+                        <select id="uvaFilter" class="custom-select">
+                            <option value="all">Todas las uvas</option>
+                            <!-- JS fill -->
+                        </select>
+                    </div>
+
+                    <div class="select-container">
+                        <h3>Región / D.O.</h3>
+                        <select id="regionFilter" class="custom-select">
+                            <option value="all">Todas las regiones</option>
+                            <!-- JS fill -->
+                        </select>
+                    </div>
+
+                    <div class="select-container">
+                        <h3>Crianza</h3>
+                        <select id="barricaFilter" class="custom-select">
+                            <option value="all">Cualquier crianza</option>
+                            <option value="no_barrica">Sin crianza en barrica</option>
+                            <option value="1_6">1 a 6 meses</option>
+                            <option value="7_12">7 a 12 meses</option>
+                            <option value="mas_12">Más de 12 meses / Reserva</option>
+                        </select>
+                    </div>
+
+                    <div class="select-container">
+                        <h3>Formato (Tamaño)</h3>
+                        <select id="formatoFilter" class="custom-select">
+                            <option value="all">Cualquier formato</option>
+                            <!-- JS fill -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Presupuesto Máximo</h3>
+                    <div class="range-container">
+                        <input type="range" id="priceRange" min="15" max="200" value="200" step="5">
+                        <div class="price-display">Hasta <span id="priceValue">200</span>€</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="results-section">
+                <div class="results-header">
+                    <h2 id="resultsCount">Nuestra selección para ti</h2>
+                </div>
+                <div class="wines-grid" id="winesGrid">
+                    <!-- Wine cards will be dynamically injected here -->
+                </div>
+                <div id="noResults" class="no-results hidden">
+                    <p>No hemos encontrado vinos con estos criterios.</p>
+                    <button id="resetFiltersBtn" class="primary-btn">Restablecer Filtros</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+
+    <script>if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js'); }); }</script>
+</body>
+
+</html>
